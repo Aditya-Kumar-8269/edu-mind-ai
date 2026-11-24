@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduMind AI - AI Learning & Project Assistant</title>
+    <link rel="stylesheet" href="css/katex.min.css">
+    <link rel="stylesheet" href="css/style.css?v=4.1">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <div class="logo-icon">🧠</div>
+                    <h1>EduMind AI</h1>
+                </div>
+                <button class="mobile-menu-toggle" id="mobileMenuToggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="#dashboard" class="nav-item active" data-section="dashboard">
+                    <span class="nav-icon">📊</span>
+                    <span class="nav-text">Dashboard</span>
+                </a>
+                <a href="#tutor" class="nav-item" data-section="tutor">
+                    <span class="nav-icon">💬</span>
+                    <span class="nav-text">AI Tutor</span>
+                </a>
+                <a href="#analyzer" class="nav-item" data-section="analyzer">
+                    <span class="nav-icon">📄</span>
+                    <span class="nav-text">PDF Analyzer</span>
+                </a>
+                <a href="#quiz" class="nav-item" data-section="quiz">
+                    <span class="nav-icon">❓</span>
+                    <span class="nav-text">Quiz Generator</span>
+                </a>
+            </nav>
+            <div class="sidebar-footer">
+                <div class="user-info">
+                    <div class="user-avatar">👤</div>
+                    <div class="user-details">
+                        <p class="user-name">Student</p>
+                        <p class="user-status">Free Plan</p>
+                    </div>
+                </div>
+                <button class="theme-toggle" id="themeToggle" title="Switch theme">
+                    <span class="theme-icon">🌙</span>
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Dashboard Section -->
+            <section id="dashboard" class="section active">
+                <div class="section-header">
+                    <h2>Welcome back, Student!</h2>
+                    <p class="section-subtitle">Your AI-powered learning companion</p>
+                </div>
+
+                <div class="hero-area">
+                    <div class="hero-content">
+                        <h3>Unlock Your Learning Potential</h3>
+                        <p>Get instant help with studies, analyze notes, and generate practice quizzes</p>
+                        <div class="hero-actions">
+                            <button class="btn btn-primary" onclick="navigateTo('tutor')">Start AI Tutor</button>
+                            <button class="btn btn-secondary" onclick="navigateTo('analyzer')">Upload Notes</button>
+                        </div>
+                    </div>
+                    <div class="hero-visual">
+                        <div class="floating-icon">🎓</div>
+                    </div>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-card glass-card">
+                        <div class="stat-icon">💬</div>
+                        <div class="stat-info">
+                            <p class="stat-value" id="statQuestions">0</p>
+                            <p class="stat-label">Questions Asked</p>
+                        </div>
+                    </div>
+                    <div class="stat-card glass-card">
+                        <div class="stat-icon">📄</div>
+                        <div class="stat-info">
+                            <p class="stat-value" id="statNotes">0</p>
+                            <p class="stat-label">Notes Analyzed</p>
+                        </div>
+                    </div>
+                    <div class="stat-card glass-card">
+                        <div class="stat-icon">❓</div>
+                        <div class="stat-info">
+                            <p class="stat-value" id="statQuizzes">0</p>
+                            <p class="stat-label">Quizzes Taken</p>
+                        </div>
+                    </div>
+                    <div class="stat-card glass-card">
+                        <div class="stat-icon">⭐</div>
+                        <div class="stat-info">
+                            <p class="stat-value" id="statScore">0%</p>
+                            <p class="stat-label">Avg Score</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Activity Feed -->
+                <div class="activity-section glass-card">
+                    <div class="activity-header">
+                        <div class="activity-title-group">
+                            <span class="activity-header-icon">📈</span>
+                            <h3>Recent Learning Activity</h3>
+                        </div>
+                        <span class="activity-badge" id="activityLiveBadge">Live History</span>
+                    </div>
+                    <div class="activity-list" id="activityList">
+                        <p class="empty-activity">No learning activities recorded yet. Ask a question, analyze notes, or take a quiz to get started!</p>
+                    </div>
+                </div>
+
+                <div class="features-grid">
+                    <div class="feature-card glass-card" onclick="navigateTo('tutor')">
+                        <div class="feature-icon">💬</div>
+                        <h3>AI Tutor</h3>
+                        <p>Ask any academic question and get instant, detailed explanations</p>
+                        <button class="btn btn-outline" onclick="navigateTo('tutor')">Try Now</button>
+                    </div>
+                    <div class="feature-card glass-card" onclick="navigateTo('analyzer')">
+                        <div class="feature-icon">📄</div>
+                        <h3>PDF Analyzer</h3>
+                        <p>Upload your notes and get AI-powered summaries and key insights</p>
+                        <button class="btn btn-outline" onclick="navigateTo('analyzer')">Upload PDF</button>
+                    </div>
+                    <div class="feature-card glass-card" onclick="navigateTo('quiz')">
+                        <div class="feature-icon">❓</div>
+                        <h3>Quiz Generator</h3>
+                        <p>Generate practice quizzes on any topic to test your knowledge</p>
+                        <button class="btn btn-outline" onclick="navigateTo('quiz')">Generate Quiz</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- AI Tutor Section -->
+            <section id="tutor" class="section">
+                <div class="section-header">
+                    <h2>AI Tutor</h2>
+                    <p class="section-subtitle">Ask any academic question</p>
+                    <button class="btn btn-outline btn-sm" id="clearChat">Clear Chat</button>
+                </div>
+
+                <div class="chat-container glass-card">
+                    <div class="chat-messages" id="chatMessages">
+                        <div class="message assistant">
+                            <div class="message-avatar">🤖</div>
+                            <div class="message-content">
+                                <p>Hello! I'm your AI Tutor. Ask me any academic question and I'll help you understand the topic better. What would you like to learn today?</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chat-input-area">
+                        <div class="input-wrapper">
+                            <input type="text" id="chatInput" placeholder="Ask a question..." autocomplete="off">
+                            <button class="btn btn-primary" id="sendButton">
+                                <span>Send</span>
+                                <span class="btn-icon">➤</span>
+                            </button>
+                        </div>
+                        <div class="loading-indicator hidden" id="chatLoading">
+                            <div class="loading-dots">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                            <p>AI is thinking...</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- PDF Analyzer Section -->
+            <section id="analyzer" class="section">
+                <div class="section-header">
+                    <h2>PDF Notes Analyzer</h2>
+                    <p class="section-subtitle">Upload your PDF notes for AI-powered analysis</p>
+                </div>
+
+                <div class="analyzer-container">
+                    <div class="upload-area glass-card" id="uploadArea">
+                        <div class="upload-icon">📄</div>
+                        <h3>Drop your PDF here</h3>
+                        <p>or click to browse</p>
+                        <input type="file" id="pdfInput" accept=".pdf" hidden>
+                        <button class="btn btn-primary" id="browseButton">Browse Files</button>
+                    </div>
+
+                    <div class="file-info glass-card hidden" id="fileInfo">
+                        <div class="file-details">
+                            <div class="file-icon">📄</div>
+                            <div class="file-meta">
+                                <p class="file-name" id="fileName">filename.pdf</p>
+                                <p class="file-size" id="fileSize">0 KB</p>
+                            </div>
+                            <button class="btn btn-outline btn-sm" id="removeFile">Remove</button>
+                        </div>
+                        <button class="btn btn-primary" id="analyzeButton">Analyze PDF</button>
+                    </div>
+
+                    <div class="processing-indicator hidden" id="processingIndicator">
+                        <div class="loading-spinner"></div>
+                        <p>Analyzing your PDF...</p>
+                    </div>
+
+                    <div class="summary-result glass-card hidden" id="summaryResult">
+                        <div class="summary-header">
+                            <h3>Summary</h3>
+                            <button class="btn btn-outline btn-sm" id="closeSummary">Close</button>
+                        </div>
+                        <div class="summary-content" id="summaryContent">
+                            <!-- Summary will be inserted here -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Quiz Generator Section -->
+            <section id="quiz" class="section">
+                <div class="section-header">
+                    <h2>Quiz Generator</h2>
+                    <p class="section-subtitle">Test your knowledge with AI-generated quizzes</p>
+                </div>
+
+                <div class="quiz-setup glass-card" id="quizSetup">
+                    <div class="form-group">
+                        <label for="quizTopic">Topic</label>
+                        <input type="text" id="quizTopic" placeholder="e.g., Photosynthesis, World War II, Calculus">
+                    </div>
+                    <div class="form-group">
+                        <label for="quizDifficulty">Difficulty</label>
+                        <select id="quizDifficulty">
+                            <option value="easy">Easy</option>
+                            <option value="medium" selected>Medium</option>
+                            <option value="hard">Hard</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="quizCount">Number of Questions</label>
+                        <select id="quizCount">
+                            <option value="5">5 Questions</option>
+                            <option value="10" selected>10 Questions</option>
+                            <option value="15">15 Questions</option>
+                        </select>
+                    </div>
+                    <button class="btn btn-primary" id="generateQuiz">Generate Quiz</button>
+                </div>
+
+                <div class="quiz-loading hidden" id="quizLoading">
+                    <div class="loading-spinner"></div>
+                    <p>Generating quiz questions...</p>
+                </div>
+
+                <div class="quiz-container glass-card hidden" id="quizContainer">
+                    <div class="quiz-header">
+                        <h3 id="quizTitle">Quiz: Topic</h3>
+                        <div class="quiz-progress">
+                            <span id="currentQuestion">1</span> / <span id="totalQuestions">10</span>
+                        </div>
+                    </div>
+                    <div class="quiz-content" id="quizContent">
+                        <!-- Quiz questions will be inserted here -->
+                    </div>
+                    <div class="quiz-footer">
+                        <button class="btn btn-secondary" id="prevQuestion" disabled>Previous</button>
+                        <button class="btn btn-primary" id="nextQuestion">Next</button>
+                        <button class="btn btn-success hidden" id="submitQuiz">Submit Quiz</button>
+                    </div>
+                </div>
+
+                <div class="quiz-result glass-card hidden" id="quizResult">
+                    <div class="result-icon">🎉</div>
+                    <h3>Quiz Complete!</h3>
+                    <div class="score-display">
+                        <p class="score-value" id="finalScore">0</p>
+                        <p class="score-total">out of <span id="totalScore">0</span></p>
+                    </div>
+                    <p class="score-percentage" id="scorePercentage">0%</p>
+                    <div class="quiz-review-list" id="quizReview"></div>
+                    <button class="btn btn-primary" id="newQuiz">Generate New Quiz</button>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="js/marked.min.js"></script>
+    <script src="js/purify.min.js"></script>
+    <script src="js/katex.min.js"></script>
+    <script src="js/app.js?v=4.1"></script>
+</body>
+</html>
